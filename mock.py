@@ -11,7 +11,18 @@ class myHandler(BaseHTTPRequestHandler):
         self.send_header('content-type','text/html')
         self.end_headers()
 
-        response = "Hello World. Am running"
+        urlComp = urlparse(self.path)
+        path = urlComp.path
+
+        ## for fetching the player information
+        if path == '/getPlayerInfo':
+            response = "hello World. Am ready to run"
+        elif path == '/getPlayerBalance':
+            response = "I am crushed"
+        elif path == '/validatePlayerPin':
+            response = "I am validated"
+        else:
+            response = "My balance is updated"
 
         self.wfile.write(bytes(response, "utf-8"))
         ## python always returns values
